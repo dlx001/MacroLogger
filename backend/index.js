@@ -23,9 +23,12 @@ app.post('/api/ocr', upload.single('file'), async (req, res) => {
                 console.log(error);
             }
         }
+        
 });
-  //const file = req.file;
-    /*
+
+/*
+  const file = req.file;
+  
   if (!file) {
     res.status(400).json({ error: 'No file provided' });
     return;
@@ -51,7 +54,7 @@ app.post('/api/ocr', upload.single('file'), async (req, res) => {
       const data = response.data;
       //res.send(data);
       //console.log(data);
-      /*
+      
       console.log(data.ParsedResults[0].ParsedText);
       let jsonStr = JSON.stringify(data.ParsedResults[0].ParsedText);
       const filePath ='output.json'
