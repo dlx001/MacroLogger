@@ -2,12 +2,15 @@ const express = require('express');
 const multer = require('multer');
 const cors = require('cors');
 const FormData = require('form-data');
+var bodyParser = require('body-parser')
 const axios = require('axios');
 require("dotenv").config();
 const app = express();
 const upload = multer();
 const fs = require('fs');
 app.use(cors());
+app.use(bodyParser.json())
+app.use("/pantry",require("./routes/pantryRoute"))
 app.post('/api/ocr', upload.single('file'), async (req, res) => {
     console.log("request made");
 

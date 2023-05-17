@@ -64,7 +64,23 @@ const RecieptForm = ()=>{
       setFormData({...formData,[name]:value});
       console.log(formData);
   }
-
+  const onSubmit = async(event)=>{
+    event.preventDefault();
+    try {
+      console.log(formData);
+      const response = await fetch('http://localhost:8000/pantry', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(formData),
+      })
+      console.log(response);
+     
+  }catch(err){
+    console.log(err);
+  }
+}
 
     const handleSubmit =async(event)=>{
         event.preventDefault();
@@ -86,7 +102,7 @@ const RecieptForm = ()=>{
               const data = await response.json();
               //console.log(data); 
               setData(data[0]);
-              console.log(processText(data[0]));
+              //console.log(processText(data[0]));
               setMacros(processText(data[0]));
             } else {
               console.log('OCR API request failed.');
@@ -99,11 +115,22 @@ const RecieptForm = ()=>{
       
     return(
       <div>
-           <form onSubmit={handleSubmit}>
-            <input type="file" accept="image/*" onChange={handleFormChange}></input>
-            <button type="submit">Submit</button>
-            </form>
-            <Form>
+         <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="name">
+              <Form.Label>Nutrition Label</Form.Label>
+              <Form.Control
+                type="file"
+                accept="image/*"
+                name="name"
+                onChange={handleFormChange}
+                required="true"
+              />
+            </Form.Group>
+            <Button type="submit">
+              Submit
+            </Button>
+          </Form>
+            <Form onSubmit={onSubmit}>
             <Form.Group controlId="name">
               <Form.Label>name</Form.Label>
               <Form.Control
@@ -111,6 +138,7 @@ const RecieptForm = ()=>{
                 name="name"
                 value={formData.name}
                 onChange={handleTextChange}
+                required="true"
               />
             </Form.Group>
             <Form.Group controlId="calories">
@@ -120,6 +148,7 @@ const RecieptForm = ()=>{
                 name="calories"
                 value={formData.calories}
                 onChange={handleTextChange}
+                required="true"
               />
             </Form.Group>
             <Form.Group controlId="servingSize">
@@ -129,6 +158,7 @@ const RecieptForm = ()=>{
                 name="servingSize"
                 value={formData.servingSize}
                 onChange={handleTextChange}
+                required="true"
               />
             </Form.Group>
             <Form.Group controlId="fat">
@@ -138,6 +168,7 @@ const RecieptForm = ()=>{
                 name="fat"
                 value={formData.fat}
                 onChange={handleTextChange}
+                required="true"
               />
             </Form.Group>
             <Form.Group controlId="carbohydrate">
@@ -147,6 +178,7 @@ const RecieptForm = ()=>{
                 name="carbohydrate"
                 value={formData.carbohydrate}
                 onChange={handleTextChange}
+                required="true"
               />
             </Form.Group>
             <Form.Group controlId="protein">
@@ -156,6 +188,7 @@ const RecieptForm = ()=>{
                 name="protein"
                 value={formData.protein}
                 onChange={handleTextChange}
+                required="true"
               />
             </Form.Group>
             <Button type="submit">
