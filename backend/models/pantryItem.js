@@ -40,6 +40,10 @@ class pantryItem{
         const results = await db.execute(sql);
         return results[0];
     }
+    static deleteById(id){
+        let sql = `DELETE FROM pantry_items WHERE id= ${id}`
+        db.execute(sql);
+    }
 }
 
 module.exports=pantryItem;

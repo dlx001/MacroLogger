@@ -211,7 +211,7 @@ const RecieptForm = ()=>{
           {Array.from(macros).map(([key, value]) => (
             <p key={key}>{key}: {value}</p>
             ))}
-            <button onClick={()=>checkGet()}>Test Get</button>
+            <Button onClick={()=>checkGet()}>Test Get</Button>
 
       </div>
        

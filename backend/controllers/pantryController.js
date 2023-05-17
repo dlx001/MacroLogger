@@ -14,7 +14,8 @@ exports.createNewItem = async(req,res,next)=>{
    console.log("save successful");
 }
 exports.deleteItem = async(req,res,next)=>{
-    res.send("del");
+   pantryItem.deleteById(req.params.id);
+   console.log("delete");
 }
 exports.updateItem = async(req,res,next)=>{
     res.send("update");
