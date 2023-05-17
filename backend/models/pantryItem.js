@@ -34,10 +34,11 @@ class pantryItem{
           `
        //const [newItem] = await db.execute(sql);
         const [newItem] = await db.execute(sql,[this.name,this.calories,this.servingSize,this.protein,this.fat,this.carbohydrate,createdAt]);
-        console.log(newItem);
     }
-    static findAll(){
-
+    static async findAll() {
+        let sql = `SELECT * FROM pantry_items`;
+        const results = await db.execute(sql);
+        return results[0];
     }
 }
 

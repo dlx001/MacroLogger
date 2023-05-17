@@ -112,6 +112,19 @@ const RecieptForm = ()=>{
           }
         };
         
+        const checkGet = async () => {
+          try {
+            const response = await fetch('http://localhost:8000/pantry', {
+              method: 'GET'
+            });
+            
+            const data = await response.json();
+            console.log(data);
+          } catch (err) {
+            console.log(err);
+          }
+        };
+        
       
     return(
       <div>
@@ -198,6 +211,7 @@ const RecieptForm = ()=>{
           {Array.from(macros).map(([key, value]) => (
             <p key={key}>{key}: {value}</p>
             ))}
+            <button onClick={()=>checkGet()}>Test Get</button>
 
       </div>
        
